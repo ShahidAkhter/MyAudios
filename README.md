@@ -1,11 +1,11 @@
 ## How to Run this WebApp
-- Create Folder named `media` at main folder.
+- `Create` Folder named `media` at main folder.
   - *(e.g., MyAudios>media)*
 
 - `Create` a another folders in `media` namely `captions`, `covers` and `sounds`.
   - *(e.g., MyAudios>media>captions,MyAudios>media>covers, MyAudios>media>sounds)*
 
-- in these three folders there are folders like `syntax` as `channelName` *as you wish to give the name*.
+- add in these three folders there are channelsFolders like `syntax` as `channelName` *as you wish to give the name*.
   - *(e.g., MyAudios>media>captions>channelName,MyAudios>media>covers>channelName, MyAudios>media>sounds>channelName)*
 
 - add mp3's in sounds as you want and named like that ``syntax`` as *TitleOfSound.BY.CreatorsName*.
