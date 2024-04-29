@@ -106,7 +106,7 @@ myProgressBar.onclick= (event) => {
     repeatTimeExitter.click();
 
 
-    captionsCalc(currentTimeIs);
+    captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
 myProgressBar.onchange = (event) => {
@@ -117,14 +117,14 @@ timeBackward.onclick= () => {
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime -= time;
     repeatTimeExitter.click();
-    captionsCalc(currentTimeIs);
+    captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
 timeForward.onclick= () => {
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime += time;
     repeatTimeExitter.click();
-    captionsCalc(currentTimeIs);
+    captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
 // KeyboardEvent

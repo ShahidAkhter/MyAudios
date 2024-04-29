@@ -134,7 +134,12 @@ const setData = async (i) => {
 
 
     favIcon.href = audBanner.src;
+
+    // captionPoints
     captionPoints = Object.keys(audioContent[i].captions)
+    captionPoints.map((e, i)=>{captionPoints[i]=parseInt(e)})
+
+    // mediaUpdater
     mediaUpdater(audTitle.innerText, audCreator.innerText, audChannel.innerText, audBanner.src)
 
 }

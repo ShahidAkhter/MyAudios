@@ -16,3 +16,24 @@
 
 - `add` covers's in covers in `jpg format` as you want and named like that `syntax` as *TitleOfSound.BY.CreatorsName*.
   - *(e.g., MyAudios>media>sounds>channelName>TitleOfSound.BY.CreatorsName.jpg)*
+
+## Format of captions
+- Use this syntax to do so:
+```JSON
+{
+  "SecondRoundOff": [
+    "Your caption stays here"
+  ],
+  "SecondRoundOff": [
+    "Your caption stays here"
+  ]
+}
+```
+  - e.g., 
+  ```JSON
+  {
+    "1": [
+      "No caption"
+    ]
+  }
+  ```
