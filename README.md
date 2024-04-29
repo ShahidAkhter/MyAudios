@@ -13,6 +13,7 @@
 
 - add captions's in captions as json file as you want and named like that syntax as TitleOfSound.BY.CreatorsName.
   -- (e.g., MyAudios>media>covers>channelName>TitleOfSound.BY.CreatorsName.json)
+
 - add covers's in covers in jpg format as you want and named like that syntax as TitleOfSound.BY.CreatorsName.
   -- (e.g., MyAudios>media>sounds>channelName>TitleOfSound.BY.CreatorsName.jpg)
   
