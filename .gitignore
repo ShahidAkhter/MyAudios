@@ -1,6 +1,5 @@
 *.mp3
 *.jpg
-server/
 media/captions/*
 media/covers/*
 media/sounds/*
