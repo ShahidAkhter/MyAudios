@@ -9,4 +9,5 @@ const captionsCalc=(currentTimeIs, captionPointsLength)=>{
         }
     }
     captionsDisplayer.innerText = audioContent[index].captions[captionPoints[captionPointsLength]][0];
+    return;
 }

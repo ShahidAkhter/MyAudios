@@ -110,7 +110,6 @@ const createAudioContentList = async () => {
         }
 
         audioContentList = { "channels": audioContent };
-        console.log(audioContent)
         localStorage.setItem('audioContentList', JSON.stringify(audioContentList));
         renderChannels();
     } catch (error) {

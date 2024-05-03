@@ -44,6 +44,7 @@ let time = 5;
 let index = 0;
 let lastIndex = 0;
 captionPoints = [];
+captionsOfBacknFor=[]
 
 let audio = new Audio();
 audioVolume.value = maxValueRange;
@@ -133,7 +134,7 @@ const setData = async (i) => {
     audChannel.innerText = audioContent[i].channel;
 
 
-    favIcon.href = audBanner.src;
+    // favIcon.href = audBanner.src;
 
     // captionPoints
     captionPoints = Object.keys(audioContent[i].captions)

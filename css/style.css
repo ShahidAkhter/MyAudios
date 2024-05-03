@@ -34,10 +34,15 @@ img {
 
 }
 
+#captionDiv {
+    position: sticky;
+    top: 76px;
+}
+
 #captionDisplayer {
     font-family: "Al_Uthmaia_Al_Arabia";
     font-size: 30px;
-    min-width: 60vw;
+    width: 60vw;
 }
 
 #audSpeed {
@@ -58,7 +63,6 @@ img {
     padding: 20px;
     border-top: 1px solid black;
     font-weight: bold;
-    height: 45px;
     height: 60px;
 
 }
@@ -195,9 +199,13 @@ img {
         width: 85vw !important;
     }
 
-    .bottom {
+    /* .bottom {
         height: 60px;
     }
+
+    #captionDisplayer {
+        bottom: 64px;
+    } */
 }
 
 @media screen and (max-width:450px) {

@@ -74,13 +74,15 @@ for (const [action, handler] of actionHandlers) {
     }
 }
 
-
 // mediaUpdater()
 const mediaUpdater = (titleIs, artistIs, albumIs, imgSource) => {
     mediaMetadata = {
         title: titleIs,
         artist: artistIs,
         album: albumIs,
+        artwork: [
+            { src: imgSource }
+        ]
     };
     navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
 }
