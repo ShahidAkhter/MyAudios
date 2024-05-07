@@ -19,7 +19,7 @@
 
 ## Format of captions
 - Use this syntax to do so:
-###### Give fonts to your captions in fontFamily key also
+###### Give fonts to your captions in fontFamily key.
 ```JSON
 {
   "fontFamily":["Your font family name"],
