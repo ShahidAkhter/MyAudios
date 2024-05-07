@@ -2,18 +2,18 @@ document.getElementById('audSpeed').onchange = () => {
     audio.playbackRate = document.getElementById('audSpeed').value;
 };
 
-volumeIcon.onclick= () => {
-    volumeSideBar.classList.toggle(`volumePos`);
-    volumeSideBar.classList.toggle(`displayNone`);
+volumeIcon.onclick = () => {
+    volumeSideBar.classList.toggle(`volumeVisibility`); // .volumePos to .volumeVisibility{ /* Nothing in this CSS */}
+    volumeSideBar.classList.toggle(`visibilityHidden`);
 };
 
-window.onclick= (e) => {
+window.onclick = (e) => {
     if (e.target.id == `volumeIcon` || e.target.id == `volumeSideBar` || e.target.id == `volume-bar`) {
         return;
     }
-    if (volumeSideBar.classList.contains(`volumePos`)) {
-        volumeSideBar.classList.toggle(`volumePos`);
-        volumeSideBar.classList.toggle(`displayNone`);
+    if (volumeSideBar.classList.contains(`volumeVisibility`)) {
+        volumeSideBar.classList.toggle(`volumeVisibility`);
+        volumeSideBar.classList.toggle(`visibilityHidden`);
     }
 };
 
@@ -21,17 +21,17 @@ audioVolume.onchange = () => {
     volumemeter();
 };
 
-isReplay.onclick= () => {
-    isReplay.innerHTML = (isReplay.innerHTML == replayOff) ? replayOn : (isReplay.innerHTML == replayOn) ? replayOff : "hi";
+isReplay.onclick = () => {
+    isReplay.innerHTML = (isReplay.innerHTML == replayOff) ? replayOn : replayOff;
 };
 
-audBanner.onclick= coverStyleChange;
+audBanner.onclick = coverStyleChange;
 
-masterPlay.onclick= async () => {
+masterPlay.onclick = async () => {
     a = await masterPlayerFunc();
 };
 
-audNext.onclick= async () => {
+audNext.onclick = async () => {
     if (index >= lastIndex) {
         index = 0;
     } else {
@@ -41,7 +41,7 @@ audNext.onclick= async () => {
     repeatTimeExitter.click();
 };
 
-audPrevious.onclick= async () => {
+audPrevious.onclick = async () => {
     if (index <= 0) {
         index = lastIndex;
     } else {
@@ -76,19 +76,51 @@ audio.addEventListener('timeupdate', async (event) => {
     }
 });
 
+
+// audio.addEventListener('timeupdate', async (event) => {
+//     let currentTimeIs = Math.floor(audio.currentTime);
+//     if (currentTimeIs != 0) {
+//         return;
+//     }
+//     let seekForCaption = (currentTimeIs + 5 > audio.duration) ? audio.duration : currentTimeIs + 5;
+
+//     for (let i = 0; i < seekForCaption; i++) {
+//         if (audioContent[index].captions[i]) {
+//             console.log("..")
+//             captionsWhenSeek[1] = audioContent[index].captions[i][0];
+//         }
+//     }
+// });
+
 audio.addEventListener('timeupdate', async () => {
     if (audioContent[index].captions.length == 0) {
-        captionsDisplayer.innerText = "No caption";
+        captionsDisplayer.innerText = "Caption Not Available!";
         return;
     }
-    let currentTimeIs = `${Math.floor(audio.currentTime)}`;
+    let currentTimeIs = Math.floor(audio.currentTime);
+    // let seekBackCaption = (currentTimeIs - 5 < 0) ? 0 : currentTimeIs - 5;
+    // let seekForCaption = (currentTimeIs + 5 > audio.duration) ? audio.duration : currentTimeIs + 5;
+
+
+    // if (audioContent[index].captions[seekBackCaption]) {
+    //     console.log(".")
+    //     captionsWhenSeek[0] = audioContent[index].captions[seekBackCaption][0];
+    // }
+
+    // if (audioContent[index].captions[seekForCaption]) {
+    //     console.log("..")
+    //     captionsWhenSeek[1] = audioContent[index].captions[seekForCaption][0];
+    // }
+
+    // console.log(captionsWhenSeek)
+
     if (audioContent[index].captions[currentTimeIs]) {
         captionsDisplayer.innerText = audioContent[index].captions[currentTimeIs][0];
         return;
     }
 });
 
-myProgressBar.onclick= (event) => {
+myProgressBar.onclick = (event) => {
     const progressPercentage = event.offsetX / myProgressBar.clientWidth;
     audio.currentTime = progressPercentage * audio.duration;
 
@@ -113,14 +145,14 @@ myProgressBar.onchange = (event) => {
     repeatTimeExitter.click();
 };
 
-timeBackward.onclick= () => {
+timeBackward.onclick = () => {
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime -= time;
     repeatTimeExitter.click();
     captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
-timeForward.onclick= () => {
+timeForward.onclick = () => {
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime += time;
     repeatTimeExitter.click();

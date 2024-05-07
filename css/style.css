@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Al_Uthmaia_Al_Arabia";
+    font-family: "Arabic";
     src: url("../assets/fonts/KFGQPC\ Uthmanic\ Script\ HAFS\ Regular.otf");
 }
 
@@ -31,7 +31,9 @@ img {
     font-size: 28px;
     padding: 8px;
     border-bottom: 1px solid black;
-
+}
+.myNav *{
+    margin: 0 8px;
 }
 
 #captionDiv {
@@ -40,9 +42,9 @@ img {
 }
 
 #captionDisplayer {
-    font-family: "Al_Uthmaia_Al_Arabia";
     font-size: 30px;
     width: 60vw;
+    min-height: 55px;
 }
 
 #audSpeed {
@@ -80,7 +82,7 @@ img {
 }
 
 .rangeInput {
-    width: 30vw;
+    width: 44vw;
     height: 6px;
     accent-color: green;
     cursor: pointer;
@@ -92,7 +94,6 @@ img {
     width: 9vw;
     rotate: -90deg;
 }
-
 
 .main {
     width: auto;
@@ -111,18 +112,18 @@ img {
 }
 
 .infos {
-    width: 260px !important;
+    width: 220px !important;
 }
 
 .others {
-    width: 340px !important;
+    width: 300px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
 }
 
 .infoWidthChange {
-    width: calc(260px + 55px) !important;
+    width: calc(220px + 55px) !important;
 }
 
 .time,
@@ -244,213 +245,4 @@ img {
     .podcastList {
         padding-left: 20vw;
     }
-}
-
-
-/* scroll css */
-::-webkit-scrollbar {
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgb(0, 255, 170);
-    border-left: 5.5px solid rgb(0, 255, 170);
-    border-right: 5.5px solid rgb(0, 255, 170);
-    border-top: 4px solid rgb(0, 255, 170);
-    border-bottom: 4px solid rgb(0, 255, 170);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgb(39, 224, 2);
-    border-left: 3.5px solid rgb(0, 255, 170);
-    border-right: 3.5px solid rgb(0, 255, 170);
-    border-top: 4px solid rgb(0, 255, 170);
-    border-bottom: 4px solid rgb(0, 255, 170);
-    border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgb(0, 183, 255);
-}
-
-
-
-/* Utility classes */
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.posRelative {
-    position: relative !important;
-    bottom: -10px;
-}
-
-.posChange {
-    position: absolute;
-    bottom: 101px;
-    left: 0;
-    height: 30vmin;
-    width: 30vmin;
-}
-
-.volumePos {
-    position: absolute;
-    bottom: 100px;
-    right: auto;
-    width: 5vmin;
-    height: 20vmin;
-}
-
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.border-1 {
-    border: 1px solid black;
-}
-
-.displayNone {
-    display: none !important;
-}
-
-.border {
-    border: 0px solid;
-}
-
-.border-radius {
-    border-radius: 4px;
-}
-
-.flex {
-    display: flex;
-}
-
-.f-col {
-    flex-direction: column;
-}
-
-.f-center {
-    align-items: center;
-    justify-content: center;
-}
-
-.f-col-reverse {
-    flex-direction: column-reverse !important;
-}
-
-.f-left {
-    justify-content: flex-start;
-}
-
-.f-between {
-    justify-content: space-between;
-}
-
-.f-right {
-    justify-content: flex-end;
-}
-
-.margin-x {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-.margin-x-0 {
-    margin-left: 16px;
-    margin-right: 16px;
-}
-
-.margin-y {
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.margin-t {
-    margin: 0 !important;
-    margin-top: 10px !important;
-}
-
-.margin-b {
-    margin: 0 !important;
-    margin-bottom: 10px !important;
-}
-
-.margin-2 {
-    margin: 4px;
-}
-
-.padding-1 {
-    padding: 8px;
-}
-
-.w-1 {
-    width: 30vw;
-}
-
-.w-2 {
-    width: auto;
-}
-
-.min-w-1 {
-    min-width: 35px;
-}
-
-.min-w-0 {
-    min-width: 50vw;
-}
-
-.min-w-2 {
-    min-width: 60vw;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.text-size-0 {
-    font-size: 1.4rem;
-}
-
-.text-size-1 {
-    font-size: 1rem;
-}
-
-.text-size-2 {
-    font-size: 0.800rem;
-}
-
-.font-bolder {
-    font-weight: bolder;
-}
-
-.height-sm {
-    height: 25px;
-}
-
-.height-sm-2 {
-    height: 20px;
-}
-
-.height-lg {
-    height: 80vw;
-}
-
-.bg {
-    background: rgb(89, 211, 64);
-}
-
-.bg-2 {
-    background: rgb(201, 255, 131);
-}
-
-.z-index-max {
-    z-index: 100;
 }

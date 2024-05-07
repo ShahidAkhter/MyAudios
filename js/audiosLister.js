@@ -130,7 +130,7 @@ const renderChannels = async () => {
                 </div>
                 <div class="margin-x-0 w-1">
                     <span>
-                        <span class="channel">All Channels</span>
+                        <span class="myChannelName">All Channels</span>
                     </span>
                 </div>
                 <div class="margin-x-0">
@@ -150,7 +150,7 @@ const renderChannels = async () => {
                     </div>
                     <div class="margin-x-0  w-1 channelNameDiv">
                         <span id="channelList${i}" class="channelName">
-                            <span class="channel">${element}</span>
+                            <span class="myChannelName">${element}</span>
                         </span>
                     </div>
                     <div class="margin-x-0">
@@ -164,7 +164,7 @@ const renderChannels = async () => {
 
     Array.from(document.getElementsByClassName('channelItemIs')).forEach(async (element, i) => {
         element.onclick = async () => {
-            audioContent = await audioContentList['channels'][element.querySelector(`.channelName .channel`).innerText];
+            audioContent = await audioContentList['channels'][element.querySelector(`.channelName .myChannelName`).innerText];
             index = 0;
             lastIndex = audioContent.length - 1;
             audio.src = audioContent[index].path;

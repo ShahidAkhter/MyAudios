@@ -1,6 +1,6 @@
 // Define initial metadata
 let mediaMetadata = {
-    title: "MyAudios - Shahid Akhter",
+    title: "MyAudios",
     artist: 'Shahid Akhter',
     album: 'Projects'
 };

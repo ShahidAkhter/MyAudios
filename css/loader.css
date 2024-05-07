@@ -1,3 +1,6 @@
+/* scroll css  and loader css*/
+
+/* loader css */
 .red{
     background: red;
 }
@@ -34,4 +37,32 @@
     100%{
         left: 110vw;
     }
+}
+
+
+
+/* scroll css */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(0, 255, 170);
+    border-left: 5.5px solid rgb(0, 255, 170);
+    border-right: 5.5px solid rgb(0, 255, 170);
+    border-top: 4px solid rgb(0, 255, 170);
+    border-bottom: 4px solid rgb(0, 255, 170);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(39, 224, 2);
+    border-left: 3.5px solid rgb(0, 255, 170);
+    border-right: 3.5px solid rgb(0, 255, 170);
+    border-top: 4px solid rgb(0, 255, 170);
+    border-bottom: 4px solid rgb(0, 255, 170);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 183, 255);
 }

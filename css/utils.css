@@ -1,0 +1,184 @@
+
+
+/* Utility classes */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.posRelative {
+    position: relative !important;
+    bottom: -10px;
+}
+
+.posChange {
+    position: absolute;
+    bottom: 101px;
+    left: 0;
+    height: 30vmin;
+    width: 30vmin;
+}
+
+.volumePos {
+    position: absolute;
+    bottom: 100px;
+    right: auto;
+    width: 5vmin;
+    height: 20vmin;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.border-1 {
+    border: 1px solid black;
+}
+
+.displayNone {
+    display: none !important;
+}
+
+.visibilityHidden {
+    visibility: hidden;
+}
+
+.border {
+    border: 0px solid;
+}
+
+.border-radius {
+    border-radius: 4px;
+}
+
+.flex {
+    display: flex;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.f-col-reverse {
+    flex-direction: column-reverse !important;
+}
+
+.f-left {
+    justify-content: flex-start;
+}
+
+.f-between {
+    justify-content: space-between;
+}
+
+.f-right {
+    justify-content: flex-end;
+}
+
+.m-0{
+    margin: 0;
+}
+
+.margin-x {
+    margin: 0 8px;
+}
+
+.margin-x-0 {
+    margin:0 16px;
+}
+
+.margin-y {
+    margin: 8px 0;
+}
+
+.margin-t {
+    margin-top: 10px !important;
+}
+
+.margin-b {
+    margin-bottom: 10px !important;
+}
+
+.margin-2 {
+    margin: 4px;
+}
+
+.padding-1 {
+    padding: 8px;
+}
+
+.w-1 {
+    width: 30vw;
+}
+
+.w-2 {
+    width: auto;
+}
+
+.min-w-1 {
+    min-width: 35px;
+}
+
+.min-w-0 {
+    min-width: 50vw;
+}
+
+.min-w-2 {
+    min-width: 60vw;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-size-0 {
+    font-size: 1.4rem;
+}
+
+.text-size-1 {
+    font-size: 1rem;
+}
+
+.text-size-2 {
+    font-size: 0.800rem;
+}
+
+.font-bolder {
+    font-weight: bolder;
+}
+
+.height-sm {
+    height: 25px;
+}
+
+.height-sm-2 {
+    height: 20px;
+}
+
+.height-lg {
+    height: 80vw;
+}
+
+.bg {
+    background: rgb(89, 211, 64);
+}
+
+.bg-2 {
+    background: rgb(201, 255, 131);
+}
+
+.z-index-max {
+    z-index: 100;
+}

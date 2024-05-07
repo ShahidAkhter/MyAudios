@@ -19,8 +19,11 @@
 
 ## Format of captions
 - Use this syntax to do so:
+###### Give fonts to your captions in fontFamily key
 ```JSON
 {
+  "fontFamily":["Your font family name"],
+
   "SecondRoundOff": [
     "Your caption stays here"
   ],
@@ -32,6 +35,8 @@
   - e.g., 
   ```JSON
   {
+    "fontFamily":["Arabic"],
+
     "1": [
       "No caption"
     ]
