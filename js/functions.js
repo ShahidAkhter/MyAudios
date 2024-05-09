@@ -36,29 +36,32 @@ const getIntegerAudLength = async (audio) => {
 }
 
 const playEvent = async () => {
-    Array.from(document.getElementsByClassName("plays")).forEach((element) => {
+    Array.from(document.getElementsByClassName("playTab")).forEach((element) => {
         element.onclick = async () => {
-            audio.pause();
-            resetplay();
+            // adding click to play and pause funtionality to playTab
             index = Number.parseInt(element.id.split("y")[1]);
             audio.src = audioContent[index].path ? audioContent[index].path : audio.src;
             a = await alwaysRun(index);
-            if (element.src == pause) {
-                element.src = play;
+            
+            let url=JSON.stringify(document.querySelector(`#${element.id} #isPlayingExpress${index}`).src)
+            
+            if (url.includes(pause)) {
+                document.querySelector(`#${element.id} #isPlayingExpress${index}`).src = play;
+                masterPlay.src = play;
                 audio.pause();
             } else {
-                element.src = pause;
+                resetplay();
+                document.querySelector(`#${element.id} #isPlayingExpress${index}`).src = pause;
+                masterPlay.src = pause;
                 audio.play();
             }
-            masterPlay.src = pause;
         };
     });
 }
 
 const resetplay = async () => {
     Array.from(document.getElementsByClassName("plays")).forEach((element) => {
-        element.src = play;
-        // audio.pause();
+        element.src = `assets/appImgs/play-solid.svg`;
     });
 }
 
@@ -101,7 +104,7 @@ const masterPlayerFunc = async () => {
         audio.play();
         masterPlay.src = pause;
         a = await resetplay();
-        document.getElementById(`play${index}`).src = pause;
+        document.querySelector(`#play${index} #isPlayingExpress${index}`).src = pause;
     }
     else {
         audio.pause();
@@ -113,7 +116,7 @@ const masterPlayerFunc = async () => {
 
 const prevNextbtnRunner = async (index) => {
     a = await resetplay();
-    document.getElementById(`play${index}`).src = pause;
+    document.querySelector(`#play${index} #isPlayingExpress${index}`).src = pause;
     masterPlay.src = pause;
     audio.src = audioContent[index].path ? audioContent[index].path : audio.src;
     a = await alwaysRun(index);

@@ -17,4 +17,3 @@ scrollRightBtn.addEventListener('click', () => {
     window.scrollBy(deviceWidth, 0);
 });
 scrollRightBtn.click();
-

@@ -48,8 +48,8 @@ captionsWhenSeek=[]
 
 let audio = new Audio();
 audioVolume.value = maxValueRange;
-let pause = `assets\\appImgs\\pause-solid.svg`;
-let play = `assets\\appImgs\\play-solid.svg`;
+let pause = `assets/appImgs/pause-solid.svg`;
+let play = `assets/appImgs/play-solid.svg`;
 
 let replayOn = `<abbr title="Replayer"><img src="assets\\appImgs\\rotate-solid.svg" class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>`;
 let replayOff = `<abbr title="Replayer"><img src="assets\\appImgs\\not-rotate-solid.svg" class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>`;

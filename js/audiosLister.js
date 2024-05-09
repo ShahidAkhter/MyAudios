@@ -3,7 +3,7 @@ const renderAudioContent = async () => {
     for (let i = 0; i < audioContent.length; i++) {
         const element = audioContent[i];
         playList.innerHTML += `
-            <div class="songItem flex f-center f-left margin-2 padding-1 bg">
+            <div class="songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}">
                 <div class="imgList flex f-center">
                     <img alt="${i}" id="${i}" class="border-radius" src="${element.cover}">
                 </div>
@@ -20,7 +20,7 @@ const renderAudioContent = async () => {
                     </span>
                     <span class="audList flex f-center">
                         <span class="playnPause">
-                            <img src="assets\\appImgs\\play-solid.svg" class="control-imgs plays" id="play${i}" alt="play">
+                            <img src="assets\\appImgs\\play-solid.svg" class="control-imgs plays" id="isPlayingExpress${i}" alt="play">
                         </span>
                     </span>
                 </div>
@@ -126,7 +126,7 @@ const renderChannels = async () => {
         <div class="channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="allChannelsContent">
             <div class="flex f-center">
                 <div class="imgList flex f-center">
-                    <img alt="-1" class="border-radius" src="./assets/favicon.jpg">
+                    <img alt="-1" class="border-radius" src="./assets/favicon.ico">
                 </div>
                 <div class="margin-x-0 w-1">
                     <span>
