@@ -43,6 +43,7 @@ isReplay.innerHTML = `<abbr title="Replayer"><img src="assets\\appImgs\\not-rota
 let time = 5;
 let index = 0;
 let lastIndex = 0;
+let audioChanged="";
 captionPoints = [];
 captionsWhenSeek=[]
 

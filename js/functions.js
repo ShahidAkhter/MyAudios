@@ -40,11 +40,13 @@ const playEvent = async () => {
         element.onclick = async () => {
             // adding click to play and pause funtionality to playTab
             index = Number.parseInt(element.id.split("y")[1]);
-            audio.src = audioContent[index].path ? audioContent[index].path : audio.src;
+            if (audioChanged != audioContent[index].path && audioContent[index].path) {
+                audio.src = audioContent[index].path;
+            }
             a = await alwaysRun(index);
-            
-            let url=JSON.stringify(document.querySelector(`#${element.id} #isPlayingExpress${index}`).src)
-            
+
+            let url = JSON.stringify(document.querySelector(`#${element.id} #isPlayingExpress${index}`).src)
+
             if (url.includes(pause)) {
                 document.querySelector(`#${element.id} #isPlayingExpress${index}`).src = play;
                 masterPlay.src = play;
@@ -55,6 +57,7 @@ const playEvent = async () => {
                 masterPlay.src = pause;
                 audio.play();
             }
+            audioChanged=audioContent[index].path;
         };
     });
 }

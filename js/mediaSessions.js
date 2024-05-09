@@ -7,7 +7,11 @@ let mediaMetadata = {
 
 // Media session handling
 if ("mediaSession" in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
+    try {
+        navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
+    } catch (error) {
+        
+    }
 
     const handleMediaAction = (action, callback) => {
         navigator.mediaSession.setActionHandler(action, () => {
@@ -84,5 +88,9 @@ const mediaUpdater = (titleIs, artistIs, albumIs, imgSource) => {
             { src: imgSource }
         ]
     };
-    navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
+    try {
+        navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
+    } catch (error) {
+        
+    }
 }
