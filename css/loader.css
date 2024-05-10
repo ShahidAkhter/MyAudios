@@ -1,44 +1,20 @@
 /* scroll css  and loader css*/
 
 /* loader css */
-.red{
-    background: red;
-}
-.green{
-    background: green;
-}
-.blue{
-    background: blue;
-}
-.loadPart{
-    position: relative;
-    margin: 0 8px;
-    height: 6px !important;
-    width: 33.333333vw !important;
+.loadingCSS {
+    height: 4px !important;
     padding: 0;
+    background: linear-gradient(135deg, red, green, blue);
+    width: 0%;
+    transition: all 1s;
 }
 
-.load{
+.load {
     position: fixed;
-    top: 0 !important;
-    left: -100vw;
-    z-index: 12 !important;
+    top: 0;
     border: 0 !important;
-    /* display: flex; */
-    align-self: center;
+    width: 100vw !important;
 }
-.loadAnimator{
-    animation: loadingBar 4s linear 1s infinite alternate both;
-}
-@keyframes loadingBar {
-    0%{
-        left:-100vw;
-    }
-    100%{
-        left: 110vw;
-    }
-}
-
 
 
 /* scroll css */

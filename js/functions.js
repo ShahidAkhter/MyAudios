@@ -4,10 +4,9 @@ const coverStyleChange = () => {
     info.classList.toggle(`infoWidthChange`);
 }
 
-const loadertoggle = async (bool) => {
-    myloader.classList.toggle(`loadAnimator`);
-    myloader.classList.toggle(`displayNone`);
-    // console.log('Hello, world!');
+const loadertoggle = async (bool, widthLoad) => {
+    document.getElementById('loadingBar').style.width = widthLoad + '%';
+
     playerControl.disabled = bool;
 
 }
@@ -57,7 +56,7 @@ const playEvent = async () => {
                 masterPlay.src = pause;
                 audio.play();
             }
-            audioChanged=audioContent[index].path;
+            audioChanged = audioContent[index].path;
         };
     });
 }
@@ -130,18 +129,18 @@ const prevNextbtnRunner = async (index) => {
 // Define the function to update audio lengths
 const updateAudioLengths = async () => {
     // Iterate through each audio
-    for (let i = 0; i < audioContent.length; i++) {
+    audioContentLength = audioContent.length
+    myloader.classList.remove(`displayNone`);
+    a = await loadertoggle(true, 0);
+    for (let i = 0; i < audioContentLength; i++) {
         const element = audioContent[i];
         const audio = new Audio(element.path);
-
-        // Show loader while loading audio metadata
-        loadertoggle(true);
-
         try {
             // Wait for audio metadata to be loaded
-            await new Promise((resolve, reject) => {
+            await new Promise(async (resolve, reject) => {
                 audio.onloadedmetadata = resolve;
                 audio.onerror = reject; // Handle errors
+                a = await loadertoggle(true, ((i + 1) / audioContentLength) * 100);
             });
 
             // Update audio length
@@ -150,14 +149,19 @@ const updateAudioLengths = async () => {
 
             // Update UI with audio duration
             document.querySelector(`#time${i} .timeDur`).innerText = `${element.audLength}`;
+            // Show loader while loading audio metadata
         } catch (error) {
             console.error('Error loading audio:', error);
+            a = await loadertoggle(true, 10);
             // Handle error, e.g., display an error message
         } finally {
             // Hide loader after loading
-            loadertoggle(false);
+            a = await loadertoggle(true, 100);
             // Update data (if needed)
             setData(index);
+            setTimeout(() => {
+                myloader.classList.add(`displayNone`);
+            }, 1000)
         }
     }
 };
