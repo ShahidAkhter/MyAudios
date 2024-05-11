@@ -25,9 +25,10 @@ img {
 }
 
 .myNav {
-    position: sticky !important;
+    position: sticky;
     top: 0;
-    width: 100vw;
+    left: 0;
+    width: auto;
     font-size: 28px;
     padding: 8px;
     border-bottom: 1px solid black;
