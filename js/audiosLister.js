@@ -167,7 +167,6 @@ const renderChannels = async () => {
         a = await loadertoggle(true, ((i + 1) / noOfChannels) * 100);
     });
     setTimeout(() => {
-
         myloader.classList.add(`displayNone`);
     }, 1000)
 

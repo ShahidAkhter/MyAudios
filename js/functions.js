@@ -75,6 +75,8 @@ const alwaysRun = async (i) => {
 
 const setData = async (i) => {
     // console.log(i)
+    audioChanged = audioContent[index].path;
+    
     timeDuration.innerText = audioContent[i].audLength;
     audTitle.innerText = audioContent[i].title;
     audBanner.src = audioContent[i].cover;
