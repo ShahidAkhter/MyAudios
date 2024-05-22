@@ -121,7 +121,7 @@ const renderChannels = async () => {
     allNoOfAudiosIs = 0;
     noOfChannels = Object.keys(audioContentList['channels']).length;
     myloader.classList.remove(`displayNone`);
-    a = await loadertoggle(true, 0);
+    a = await loadertoggle(0);
     Object.keys(audioContentList['channels']).forEach(async (element) => {
         allNoOfAudiosIs += audioContentList['channels'][element].length;
     });
@@ -144,7 +144,7 @@ const renderChannels = async () => {
             </div>
         </div>`;
 
-    a = await loadertoggle(true, 10);
+    a = await loadertoggle(10);
     Object.keys(audioContentList['channels']).forEach(async (element, i) => {
         playList.innerHTML += `
             <div class="channelItemIs channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="channelItemNo${i}">
@@ -164,7 +164,7 @@ const renderChannels = async () => {
                     </div>
                 </div>
             </div>`;
-        a = await loadertoggle(true, ((i + 1) / noOfChannels) * 100);
+        a = await loadertoggle(((i + 1) / noOfChannels) * 100);
     });
     setTimeout(() => {
         myloader.classList.add(`displayNone`);

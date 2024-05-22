@@ -4,11 +4,8 @@ const coverStyleChange = () => {
     info.classList.toggle(`infoWidthChange`);
 }
 
-const loadertoggle = async (bool, widthLoad) => {
+const loadertoggle = async (widthLoad) => {
     document.getElementById('loadingBar').style.width = widthLoad + '%';
-
-    playerControl.disabled = bool;
-
 }
 
 const getAudLength = (audioLength) => {
@@ -76,7 +73,8 @@ const alwaysRun = async (i) => {
 const setData = async (i) => {
     // console.log(i)
     audioChanged = audioContent[index].path;
-    
+
+    currentTimeDur.innerText = "00:00";
     timeDuration.innerText = audioContent[i].audLength;
     audTitle.innerText = audioContent[i].title;
     audBanner.src = audioContent[i].cover;
@@ -103,7 +101,8 @@ const volumemeter = () => {
 }
 
 const masterPlayerFunc = async () => {
-    // console.log(audio.src)
+    if (audioContent.length === 0) return;
+
     if (audio.paused || audio.currentTime <= 0) {
         audio.play();
         masterPlay.src = pause;
@@ -133,7 +132,7 @@ const updateAudioLengths = async () => {
     // Iterate through each audio
     audioContentLength = audioContent.length
     myloader.classList.remove(`displayNone`);
-    a = await loadertoggle(true, 0);
+    a = await loadertoggle(0);
     for (let i = 0; i < audioContentLength; i++) {
         const element = audioContent[i];
         const audio = new Audio(element.path);
@@ -142,7 +141,7 @@ const updateAudioLengths = async () => {
             await new Promise(async (resolve, reject) => {
                 audio.onloadedmetadata = resolve;
                 audio.onerror = reject; // Handle errors
-                a = await loadertoggle(true, ((i + 1) / audioContentLength) * 100);
+                a = await loadertoggle(((i + 1) / audioContentLength) * 100);
             });
 
             // Update audio length
@@ -154,11 +153,11 @@ const updateAudioLengths = async () => {
             // Show loader while loading audio metadata
         } catch (error) {
             console.error('Error loading audio:', error);
-            a = await loadertoggle(true, 10);
+            a = await loadertoggle(10);
             // Handle error, e.g., display an error message
         } finally {
             // Hide loader after loading
-            a = await loadertoggle(true, 100);
+            a = await loadertoggle(100);
             // Update data (if needed)
             setData(index);
             setTimeout(() => {

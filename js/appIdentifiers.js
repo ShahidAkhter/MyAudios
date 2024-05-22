@@ -1,4 +1,4 @@
-let maxValueRange = 10000;
+let maxValueRange = 1000000;
 let playList = document.getElementById('Playlist');
 let info = document.getElementById('info');
 let myloader = document.getElementById('myloader');

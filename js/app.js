@@ -32,6 +32,8 @@ masterPlay.onclick = async () => {
 };
 
 audNext.onclick = async () => {
+    if (audioContent.length === 0) return;
+
     if (index >= lastIndex) {
         index = 0;
     } else {
@@ -42,6 +44,8 @@ audNext.onclick = async () => {
 };
 
 audPrevious.onclick = async () => {
+    if (audioContent.length === 0) return;
+
     if (index <= 0) {
         index = lastIndex;
     } else {
@@ -54,6 +58,8 @@ audPrevious.onclick = async () => {
 // Listen to Events
 audio.addEventListener('timeupdate', async (event) => {
     // Update Seekbar
+    if (audioContent.length === 0) return;
+
     progress = Number.parseInt((audio.currentTime / audioContent[index].integerLength) * maxValueRange);
     currentTimeDur.innerText = getAudLength(audio.currentTime);
     myProgressBar.value = progress;
@@ -93,6 +99,8 @@ audio.addEventListener('timeupdate', async (event) => {
 // });
 
 audio.addEventListener('timeupdate', async () => {
+    if (audioContent.length === 0) return;
+
     if (audioContent[index].captions.length == 0) {
         captionsDisplayer.innerText = "Caption Not Available!";
         return;
@@ -120,9 +128,11 @@ audio.addEventListener('timeupdate', async () => {
     }
 });
 
-myProgressBar.onclick = (event) => {
-    const progressPercentage = event.offsetX / myProgressBar.clientWidth;
-    audio.currentTime = progressPercentage * audio.duration;
+myProgressBar.oninput = (event) => {
+    if (audioContent.length === 0) return;
+
+    progressPercentage = (myProgressBar.value / maxValueRange) * audio.duration
+    audio.currentTime = progressPercentage;
 
     let currentTimeIs = Math.floor(audio.currentTime);
 
@@ -146,6 +156,8 @@ myProgressBar.onchange = (event) => {
 };
 
 timeBackward.onclick = () => {
+    if (audioContent.length === 0) return;
+
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime -= time;
     repeatTimeExitter.click();
@@ -153,6 +165,8 @@ timeBackward.onclick = () => {
 };
 
 timeForward.onclick = () => {
+    if (audioContent.length === 0) return;
+
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime += time;
     repeatTimeExitter.click();
