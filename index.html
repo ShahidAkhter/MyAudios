@@ -23,35 +23,27 @@
     <nav id="navbar" class="myNav font-bolder flex f-center f-left bg">
         <div class="webName flex f-center f-left">MyAudios</div>
         <div class="navOptions flex f-center f-left">
-            <div class="text-size-1 m-0 margin-t" id="isReplay">
+            <div class="text-size-1 m-0 margin-t">
                 <abbr title="Replayer"><img src="assets\appImgs\not-rotate-solid.svg"
-                        class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>
+                        class="control-imgs height-sm font-bolder" id="isReplay" alt="Replayer"></abbr>
             </div>
+            <div class="text-size-1 font-bolder cursor-pointer" id="audSpeed" alt="audSpeed">1x</div>
             <div class="flex">
-                <div class="text-size-1 cursor-pointer" id="repeatTimeBegin">Start</div>
-                <div class="text-size-1 cursor-pointer" id="repeatTimeEnd">Stop</div>
-                <div class="text-size-1 cursor-pointer" id="repeatTimeExitter">XXXX</div>
-            </div>
-            <div class="flex">
-                <select name="" id="audSpeed" class="border-1 border-radius">
-                    <option value="0.5">0.5x</option>
-                    <option value="1" selected>Normal</option>
-                    <option value="1.5">1.5x</option>
-                    <option value="2">2x</option>
-                </select>
+                <div class="text-size-1 cursor-pointer" id="repeaterTime">Start</div>
+                <div class='text-size-1 displayNone' id="curRepeatInterval"></div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="flex f-center f-col margin-y margin-x font-bolder text-center" id="captionDiv">
-        <div class="text-size-0 margin-x flex f-center margin-2 padding-1 bg border-1 border-radius min-w-0"
+        <div class="text-size-0 margin-x flex f-center f-col margin-2 padding-1 bg border-1 border-radius min-w-0"
             id="captionDisplayer">Caption Tab!</div>
     </div>
 
     <div class="main flex f-center f-col">
         <div class="flex f-center f-col margin-y margin-x font-bolder" id="Playlist">
-            <!-- Content managed by JavaScript, this is the Playlist section of this website -->
+            <!-- Content managed by JavaScript, this is the Playlist section of this WebApp -->
         </div>
     </div>
 
@@ -95,7 +87,7 @@
                 <div class="volumeNav bg flex f-center border-1 border-radius volumePos visibilityHidden"
                     id="volumeSideBar">
                     <input type="range" name="volume" class="rangeInput volume margin-x" id="volume-bar" min="0"
-                        value="0" max="1000000">
+                        value="0" max="100">
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 let maxValueRange = 1000000;
+let volMaxValueRange=100;
 let playList = document.getElementById('Playlist');
 let info = document.getElementById('info');
 let myloader = document.getElementById('myloader');
@@ -26,9 +27,8 @@ let captionsDisplayer = document.getElementById('captionDisplayer');
 
 let isReplay = document.getElementById('isReplay');
 
-let repeatTimeBegin = document.getElementById('repeatTimeBegin')
-let repeatTimeEnd = document.getElementById('repeatTimeEnd')
-let repeatTimeExitter = document.getElementById('repeatTimeExitter')
+let repeaterTime = document.getElementById('repeaterTime');
+let curRepeatInterval = document.getElementById('curRepeatInterval');
 
 let favIcon = document.querySelector('link[rel="shortcut icon"]');
 
@@ -38,8 +38,7 @@ let repeatTimeEndVar = 0
 let repeatPause = true;
 let repeatPlay = true;
 
-
-isReplay.innerHTML = `<abbr title="Replayer"><img src="assets\\appImgs\\not-rotate-solid.svg" class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>`
+let isReplayer=false;
 let time = 5;
 let index = 0;
 let lastIndex = 0;
@@ -52,5 +51,5 @@ audioVolume.value = maxValueRange;
 let pause = `assets/appImgs/pause-solid.svg`;
 let play = `assets/appImgs/play-solid.svg`;
 
-let replayOn = `<abbr title="Replayer"><img src="assets\\appImgs\\rotate-solid.svg" class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>`;
-let replayOff = `<abbr title="Replayer"><img src="assets\\appImgs\\not-rotate-solid.svg" class="control-imgs height-sm font-bolder" alt="Replayer"></abbr>`;
+let replayOn = `assets/appImgs/rotate-solid.svg`;
+let replayOff = `assets/appImgs/not-rotate-solid.svg`;

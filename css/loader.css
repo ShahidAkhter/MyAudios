@@ -40,5 +40,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(0, 183, 255);
+    background: green;
 }

@@ -153,6 +153,9 @@
     font-size: 0.800rem;
 }
 
+.text-size-3{
+    font-size: 25px;
+}
 .font-bolder {
     font-weight: bolder;
 }

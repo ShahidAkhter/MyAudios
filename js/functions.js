@@ -97,7 +97,7 @@ const setData = async (i) => {
 }
 
 const volumemeter = () => {
-    audio.volume = audioVolume.value / maxValueRange;
+    audio.volume = audioVolume.value / volMaxValueRange;
 }
 
 const masterPlayerFunc = async () => {

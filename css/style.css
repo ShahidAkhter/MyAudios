@@ -1,6 +1,8 @@
 @font-face {
     font-family: "Arabic";
-    src: url("../assets/fonts/KFGQPC\ Uthmanic\ Script\ HAFS\ Regular.otf");
+    /* src: url("../assets/fonts/KFGQPC\ Uthmanic\ Script\ HAFS\ Regular.otf"); */
+    src: url("../assets/fonts/UthmanicHafs1\ Ver18.ttf");
+
 }
 
 * {
@@ -49,9 +51,10 @@ img {
 }
 
 #audSpeed {
-    width: 100px;
+    width: 40px;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 
 .webName {

@@ -1,27 +1,34 @@
-// const repeatTimeBegin = document.getElementById('repeatTimeBegin')
-// const repeatTimeEnd = document.getElementById('repeatTimeEnd')
-// const repeatTimeRunner = document.getElementById('repeatTimeRunner')
-// let isRepeaterOn=false
-repeatTimeBegin.addEventListener('click', () => {
-    const current = Math.floor(audio.currentTime);
-    repeatTimeBegin.innerText = getAudLength(current);
-    repeatTimeBeginVar = current;
-});
-
-repeatTimeEnd.addEventListener('click', () => {
-    const current = Math.floor(audio.currentTime) + 1;
-    if (repeatTimeBeginVar && (repeatTimeBeginVar + 2) >= current) {
-        return;
+repeaterTime.addEventListener('click', () => {
+    let current = Math.floor(audio.currentTime);
+    console.log(repeaterTime.innerText)
+    if (repeaterTime.innerText == 'Start') {
+        curRepeatInterval.classList.remove('displayNone')
+        curRepeatInterval.innerText = getAudLength(repeatTimeBeginVar);
+        repeatTimeBeginVar = current;
+        repeaterTime.innerText = 'Stop';
     }
-    isRepeaterOn = true;
-    repeatTimeEnd.innerText = getAudLength(current);
-    repeatTimeEndVar = current;
+    else if (repeaterTime.innerText == 'Stop') {
+        current += 1;
+        if (repeatTimeBeginVar && (repeatTimeBeginVar + 2) >= current) {
+            return;
+        }
+        isRepeaterOn = true;
+        repeatTimeEndVar = current;
+        curRepeatInterval.innerText += `-${getAudLength(repeatTimeEndVar)}`;
+        repeaterTime.innerText = 'XXXX';
+
+    }
+    else {
+        exitRepeats();
+    }
+
 });
 
-repeatTimeExitter.addEventListener('click', () => {
-    repeatTimeBegin.innerText = "Start";
-    repeatTimeEnd.innerText = "Stop";
+const exitRepeats = () => {
+    repeaterTime.innerText = "Start";
     repeatTimeBeginVar = 0;
     repeatTimeEndVar = 0;
     isRepeaterOn = false;
-});
+    curRepeatInterval.classList.add('displayNone')
+
+}

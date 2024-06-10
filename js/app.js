@@ -1,6 +1,15 @@
-document.getElementById('audSpeed').onchange = () => {
-    audio.playbackRate = document.getElementById('audSpeed').value;
+let lst = [[0.5, 1, 1.5, 2], [1]]; // Corrected array initialization with the index starting at 0
+document.getElementById('audSpeed').onclick = () => {
+
+    lst[1][0] += 1;
+    if (lst[1][0] >= (lst[0].length)) {
+        lst[1][0] = 0;
+    }
+
+    audio.playbackRate = lst[0][lst[1][0]];
+    document.getElementById('audSpeed').innerText = `${lst[0][lst[1][0]]}x`;
 };
+
 
 volumeIcon.onclick = () => {
     volumeSideBar.classList.toggle(`volumeVisibility`); // .volumePos to .volumeVisibility{ /* Nothing in this CSS */}
@@ -22,7 +31,8 @@ audioVolume.onchange = () => {
 };
 
 isReplay.onclick = () => {
-    isReplay.innerHTML = (isReplay.innerHTML == replayOff) ? replayOn : replayOff;
+    isReplay.src = (!isReplayer) ? replayOn : replayOff;
+    isReplayer = (!isReplayer)
 };
 
 audBanner.onclick = coverStyleChange;
@@ -40,7 +50,7 @@ audNext.onclick = async () => {
         index += 1;
     }
     prevNextbtnRunner(index);
-    repeatTimeExitter.click();
+    exitRepeats();
 };
 
 audPrevious.onclick = async () => {
@@ -52,7 +62,7 @@ audPrevious.onclick = async () => {
         index -= 1;
     }
     prevNextbtnRunner(index);
-    repeatTimeExitter.click();
+    exitRepeats();
 };
 
 // Listen to Events
@@ -64,7 +74,7 @@ audio.addEventListener('timeupdate', async (event) => {
     currentTimeDur.innerText = getAudLength(audio.currentTime);
     myProgressBar.value = progress;
     current = Math.floor(audio.currentTime);
-    if (isReplay.innerHTML == replayOn && audio.ended) {
+    if (isReplayer && audio.ended) {
         masterPlay.click();
         return;
     }
@@ -137,7 +147,7 @@ myProgressBar.oninput = (event) => {
     let currentTimeIs = Math.floor(audio.currentTime);
 
     currentTimeDur.innerText = getAudLength(audio.currentTime);
-    if (isReplay.innerHTML == replayOn && audio.ended) {
+    if (isReplayer && audio.ended) {
         masterPlay.click();
         return;
     }
@@ -145,14 +155,14 @@ myProgressBar.oninput = (event) => {
         masterPlay.src = play;
         resetplay();
     }
-    repeatTimeExitter.click();
+    exitRepeats();
 
 
     captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
 myProgressBar.onchange = (event) => {
-    repeatTimeExitter.click();
+    exitRepeats();
 };
 
 timeBackward.onclick = () => {
@@ -160,7 +170,7 @@ timeBackward.onclick = () => {
 
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime -= time;
-    repeatTimeExitter.click();
+    exitRepeats();
     captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
@@ -169,7 +179,7 @@ timeForward.onclick = () => {
 
     let currentTimeIs = Math.floor(audio.currentTime);
     audio.currentTime += time;
-    repeatTimeExitter.click();
+    exitRepeats();
     captionsCalc(currentTimeIs, captionPoints.length - 1);
 };
 
