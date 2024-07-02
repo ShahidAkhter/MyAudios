@@ -1,6 +1,10 @@
 let maxValueRange = 1000000;
 let volMaxValueRange=100;
 let playList = document.getElementById('Playlist');
+let channelListDiv = document.getElementById('ChannelListDiv');
+let channelViewerbtn = document.getElementById('channelViewerbtn');
+
+
 let info = document.getElementById('info');
 let myloader = document.getElementById('myloader');
 let playerControl = document.getElementById('player-control');
@@ -43,6 +47,8 @@ let time = 5;
 let index = 0;
 let lastIndex = 0;
 let audioChanged="";
+let currentChannel="";
+
 captionPoints = [];
 captionsWhenSeek=[]
 

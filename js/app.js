@@ -10,6 +10,10 @@ document.getElementById('audSpeed').onclick = () => {
     document.getElementById('audSpeed').innerText = `${lst[0][lst[1][0]]}x`;
 };
 
+channelViewerbtn.onclick=()=>{
+    channelListDiv.style.display='flex';
+    playList.style.display='none';
+}
 
 volumeIcon.onclick = () => {
     volumeSideBar.classList.toggle(`volumeVisibility`); // .volumePos to .volumeVisibility{ /* Nothing in this CSS */}

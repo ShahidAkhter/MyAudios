@@ -1,5 +1,7 @@
 const renderAudioContent = async () => {
     playList.innerHTML = "";
+    channelListDiv.style.display = 'none';
+
     for (let i = 0; i < audioContent.length; i++) {
         const element = audioContent[i];
         playList.innerHTML += `
@@ -28,6 +30,7 @@ const renderAudioContent = async () => {
     }
     await updateAudioLengths();
     playEvent();
+    playList.style.display = 'flex';
 };
 
 const fetchAudioData = async (url, splicingNum) => {
@@ -121,11 +124,12 @@ const renderChannels = async () => {
     allNoOfAudiosIs = 0;
     noOfChannels = Object.keys(audioContentList['channels']).length;
     myloader.classList.remove(`displayNone`);
+    channelListDiv.innerHTML = ""
     a = await loadertoggle(0);
     Object.keys(audioContentList['channels']).forEach(async (element) => {
         allNoOfAudiosIs += audioContentList['channels'][element].length;
     });
-    playList.innerHTML += `
+    channelListDiv.innerHTML += `
         <div class="channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="allChannelsContent">
             <div class="flex f-center">
                 <div class="imgList flex f-center">
@@ -146,7 +150,7 @@ const renderChannels = async () => {
 
     a = await loadertoggle(10);
     Object.keys(audioContentList['channels']).forEach(async (element, i) => {
-        playList.innerHTML += `
+        channelListDiv.innerHTML += `
             <div class="channelItemIs channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="channelItemNo${i}">
                 <div class="flex f-center">
                     <div class="imgListChannelBar flex f-center">
@@ -172,15 +176,23 @@ const renderChannels = async () => {
 
     Array.from(document.getElementsByClassName('channelItemIs')).forEach(async (element, i) => {
         element.onclick = async () => {
-            audioContent = await audioContentList['channels'][element.querySelector(`.channelName .myChannelName`).innerText];
+            let channelDisplaying=element.querySelector(`.channelName .myChannelName`).innerText
+            audioContent = await audioContentList['channels'][channelDisplaying];
             index = 0;
             lastIndex = audioContent.length - 1;
+            if (currentChannel == channelDisplaying) {
+                channelListDiv.style.display = 'none';
+                playList.style.display = 'flex';
+                return;
+            }
             audio.src = audioContent[index].path;
+            currentChannel = channelDisplaying
             renderAudioContent();
         };
     });
 
     document.getElementById('allChannelsContent').onclick = () => {
+        audioContent = []
         Object.keys(audioContentList['channels']).forEach(async (element) => {
             audioContentList['channels'][element].forEach(async (audio) => {
                 audioContent.push(audio);
@@ -188,8 +200,14 @@ const renderChannels = async () => {
         });
         index = 0;
         lastIndex = audioContent.length - 1;
+        if (currentChannel == 'AllChannels') {
+            channelListDiv.style.display = 'none';
+            playList.style.display = 'flex';
+            return;
+        }
         audio.src = audioContent[index].path;
         renderAudioContent();
+        currentChannel = 'AllChannels'
     };
 };
 

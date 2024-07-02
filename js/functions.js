@@ -72,6 +72,7 @@ const alwaysRun = async (i) => {
 
 const setData = async (i) => {
     // console.log(i)
+    captionsDisplayer.innerHTML="Caption Tab!"
     audioChanged = audioContent[index].path;
 
     currentTimeDur.innerText = "00:00";
@@ -81,10 +82,11 @@ const setData = async (i) => {
     audCreator.innerText = audioContent[i].creator;
     audChannel.innerText = audioContent[i].channel;
 
-
     // favIcon.href = audBanner.src;
     if (audioContent[i].captions['fontFamily'][0] && audioContent[i].captions['fontFamily'][0] != "") {
         captionsDisplayer.style.fontFamily = audioContent[i].captions['fontFamily'][0]
+    }else{
+        captionsDisplayer.style.fontFamily = 'auto'
     };
 
     // captionPoints
