@@ -176,7 +176,14 @@ const renderChannels = async () => {
 
     Array.from(document.getElementsByClassName('channelItemIs')).forEach(async (element, i) => {
         element.onclick = async () => {
-            let channelDisplaying=element.querySelector(`.channelName .myChannelName`).innerText
+            let channelDisplaying = element.querySelector(`.channelName .myChannelName`).innerText
+
+            if (currentChannel == channelDisplaying) {
+                channelListDiv.style.display = 'none';
+                playList.style.display = 'flex';
+                return;
+            }
+
             audioContent = await audioContentList['channels'][channelDisplaying];
             index = 0;
             lastIndex = audioContent.length - 1;
@@ -192,6 +199,13 @@ const renderChannels = async () => {
     });
 
     document.getElementById('allChannelsContent').onclick = () => {
+
+        if (currentChannel == 'AllChannels') {
+            channelListDiv.style.display = 'none';
+            playList.style.display = 'flex';
+            return;
+        }
+
         audioContent = []
         Object.keys(audioContentList['channels']).forEach(async (element) => {
             audioContentList['channels'][element].forEach(async (audio) => {
