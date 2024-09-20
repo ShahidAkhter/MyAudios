@@ -91,6 +91,14 @@ const createAudioContentList = async () => {
                 let captions = {};
                 if (captionResp.ok) {
                     captions = await captionResp.json();
+                } else {
+                    captions = {
+                        "fontFamily": ["Arabic"],
+                        "0": [
+                            "---"
+                        ]
+                    };
+
                 }
 
                 const pathFileName = efol.split('/').pop().replace(/%20/g, ' ');
