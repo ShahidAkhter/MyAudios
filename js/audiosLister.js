@@ -7,7 +7,7 @@ const renderAudioContent = async () => {
         playList.innerHTML += `
             <div class="songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}">
                 <div class="imgList flex f-center">
-                    <img alt="${i}" id="${i}" class="border-radius" src="${element.cover}">
+                    <img alt="${i}" id="${i}" class="border-radius" src="${element.cover != "" ? element.cover : defaultCover}">
                 </div>
                 <div class="margin-x infoTabs w-1" id="infoTab${i}">
                     <div class="text-size-1" id="title${i}">${element.title}</div>
@@ -84,20 +84,24 @@ const createAudioContentList = async () => {
                 const title = fullTitle.split('/').pop().replace(/%20/g, ' ');
                 const creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
                 const coverFileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
-                const coverPath = 'media/covers/' + channelName + '/' + coverFileName + '.jpg';
+                let coverPath = 'media/covers/' + channelName + '/' + coverFileName + '.jpg';
                 const captionResp = await fetch('media/captions/' + channelName + '/' + coverFileName + '.json');
 
+                // Fetch cover to check its ok
+                const coverOk = await fetch(coverPath);
+                if (!coverOk.ok) {
+                    coverPath = "";
+                }
                 // Fetch captions
                 let captions = {};
                 if (captionResp.ok) {
-                    captions = await captionResp.json();
+                    try {
+                        captions = await captionResp.json();
+                    } catch (e) {
+                        captions = defaultCaption;
+                    }
                 } else {
-                    captions = {
-                        "fontFamily": ["Arabic"],
-                        "0": [
-                            "---"
-                        ]
-                    };
+                    captions = defaultCaption;
 
                 }
 
@@ -162,7 +166,7 @@ const renderChannels = async () => {
             <div class="channelItemIs channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="channelItemNo${i}">
                 <div class="flex f-center">
                     <div class="imgListChannelBar flex f-center">
-                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"]}">
+                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"] != "" ? audioContentList['channels'][element][0]["cover"]:defaultCover}">
                     </div>
                     <div class="margin-x-0  w-1 channelNameDiv">
                         <span id="channelList${i}" class="channelName">

@@ -1,5 +1,5 @@
 let maxValueRange = 1000000;
-let volMaxValueRange=100;
+let volMaxValueRange = 100;
 let playList = document.getElementById('Playlist');
 let channelListDiv = document.getElementById('ChannelListDiv');
 let channelViewerbtn = document.getElementById('channelViewerbtn');
@@ -42,15 +42,23 @@ let repeatTimeEndVar = 0
 let repeatPause = true;
 let repeatPlay = true;
 
-let isReplayer=false;
+let isReplayer = false;
 let time = 5;
 let index = 0;
 let lastIndex = 0;
-let audioChanged="";
-let currentChannel="";
+let audioChanged = "";
+let currentChannel = "";
 
 captionPoints = [];
-captionsWhenSeek=[]
+captionsWhenSeek = [];
+let defaultCaption = {
+    "fontFamily": ["Arabic"],
+    "0": [
+        "---"
+    ]
+}
+
+let defaultCover = "./assets/favicon.ico"
 
 let audio = new Audio();
 audioVolume.value = maxValueRange;
@@ -59,3 +67,4 @@ let play = `assets/appImgs/play-solid.svg`;
 
 let replayOn = `assets/appImgs/rotate-solid.svg`;
 let replayOff = `assets/appImgs/not-rotate-solid.svg`;
+

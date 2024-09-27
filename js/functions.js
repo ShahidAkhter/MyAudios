@@ -78,7 +78,7 @@ const setData = async (i) => {
     currentTimeDur.innerText = "00:00";
     timeDuration.innerText = audioContent[i].audLength;
     audTitle.innerText = audioContent[i].title;
-    audBanner.src = audioContent[i].cover;
+    audBanner.src = audioContent[i].cover!=""?audioContent[i].cover:defaultCover;
     audCreator.innerText = audioContent[i].creator;
     audChannel.innerText = audioContent[i].channel;
 

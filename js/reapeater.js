@@ -3,8 +3,8 @@ repeaterTime.addEventListener('click', () => {
     console.log(repeaterTime.innerText)
     if (repeaterTime.innerText == 'Start') {
         curRepeatInterval.classList.remove('displayNone')
-        curRepeatInterval.innerText = getAudLength(repeatTimeBeginVar);
         repeatTimeBeginVar = current;
+        curRepeatInterval.innerText = getAudLength(repeatTimeBeginVar);
         repeaterTime.innerText = 'Stop';
     }
     else if (repeaterTime.innerText == 'Stop') {
