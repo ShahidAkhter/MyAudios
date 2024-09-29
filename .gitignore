@@ -1,4 +1,5 @@
-*.mp3
-*.jpg
-media
+media/
+# *.mp3
+# *.jpg
+# *.json
 dummy.json

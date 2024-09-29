@@ -87,7 +87,7 @@ const createAudioContentList = async () => {
                 const title = fullTitle.split('/').pop().replace(/%20/g, ' ');
                 const creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
                 const coverFileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
-                let coverPath = 'media/' + channelName + '/covers/' + '/' + coverFileName + '.jpg';
+                let coverPath = 'media/' + channelName + '/covers/' + coverFileName + '.jpg';
                 const captionResp = await fetch('media/' + channelName + '/captions/' + coverFileName + '.json');
 
                 // Fetch cover to check its ok
