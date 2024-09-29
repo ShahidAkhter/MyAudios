@@ -2,32 +2,36 @@
 - `Create` Folder named `media` at main folder.
   - *(e.g., MyAudios>media)*
 
-- `Create` a another folders in `media` namely `captions`, `covers` and `sounds`.
-  - *(e.g., MyAudios>media>captions,MyAudios>media>covers, MyAudios>media>sounds)*
+- `Create` folders *channelName* (of your choice) in `media`.
+  - *(e.g., MyAudios>media>channelName)*
 
-- `add` in these three folders as they are channelsFolders like `syntax` as `channelName` *as you wish to give the name*.
-  - *(e.g., MyAudios>media>captions>channelName,MyAudios>media>covers>channelName, MyAudios>media>sounds>channelName)*
+- Inside *channelName* `Create` folders namely `captions`, `covers` and `audios`.
+  - *(e.g., MyAudios>media>channelName>audios, MyAudios>media>channelName>covers, MyAudios>media>channelName>captions)*
 
-- `add` mp3's in sounds as you want and named like that ``syntax`` as *TitleOfSound.BY.CreatorsName*.
-  - *(e.g., MyAudios>media>captions>channelName>TitleOfSound.BY.CreatorsName)*
+- `add` mp3's in audios as you want and named like that ``syntax`` as *TitleOfAudio.BY.CreatorsName*.
+  - *(e.g., MyAudios>media>channelName>audios>TitleOfAudio.BY.CreatorsName.mp3)*
 
-- `add` captions's in captions as `json file` as you want and named like that `syntax` as *TitleOfSound.BY.CreatorsName*.
-  - *(e.g., MyAudios>media>covers>channelName>TitleOfSound.BY.CreatorsName.json)*
+- `add` captions's in captions as `json file` as you want and named like that `syntax` as *TitleOfAudio.BY.CreatorsName*.
+  - *(e.g., MyAudios>media>channelName>captions>TitleOfAudio.BY.CreatorsName.json)*
 
-- `add` covers's in covers in `jpg format` as you want and named like that `syntax` as *TitleOfSound.BY.CreatorsName*.
-  - *(e.g., MyAudios>media>sounds>channelName>TitleOfSound.BY.CreatorsName.jpg)*
+- `add` covers's in covers in `jpg format` as you want and named like that `syntax` as *TitleOfAudio.BY.CreatorsName*.
+  - *(e.g., MyAudios>media>channelName>covers>TitleOfAudio.BY.CreatorsName.jpg)*
 
 ## Format of captions
 - Use this syntax to do so:
 ###### Give fonts to your captions in fontFamily key.
+
+#### *t0=first caption time, t1=second caption time*
+#### *t0, t1 are in seconds(s)*
+
 ```JSON
 {
   "fontFamily":["Your font family name"],
 
-  "SecondRoundOff": [
+  "t0": [
     "Your caption stays here"
   ],
-  "SecondRoundOff": [
+  "t1": [
     "Your caption stays here"
   ]
 }
@@ -38,7 +42,7 @@
     "fontFamily":["Arabic"],
 
     "1": [
-      "No caption"
+      "---"
     ]
   }
   ```

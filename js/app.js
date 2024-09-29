@@ -97,21 +97,6 @@ audio.addEventListener('timeupdate', async (event) => {
 });
 
 
-// audio.addEventListener('timeupdate', async (event) => {
-//     let currentTimeIs = Math.floor(audio.currentTime);
-//     if (currentTimeIs != 0) {
-//         return;
-//     }
-//     let seekForCaption = (currentTimeIs + 5 > audio.duration) ? audio.duration : currentTimeIs + 5;
-
-//     for (let i = 0; i < seekForCaption; i++) {
-//         if (audioContent[index].captions[i]) {
-//             console.log("..")
-//             captionsWhenSeek[1] = audioContent[index].captions[i][0];
-//         }
-//     }
-// });
-
 audio.addEventListener('timeupdate', async () => {
     if (audioContent.length === 0) return;
 
@@ -120,21 +105,6 @@ audio.addEventListener('timeupdate', async () => {
         return;
     }
     let currentTimeIs = Math.floor(audio.currentTime);
-    // let seekBackCaption = (currentTimeIs - 5 < 0) ? 0 : currentTimeIs - 5;
-    // let seekForCaption = (currentTimeIs + 5 > audio.duration) ? audio.duration : currentTimeIs + 5;
-
-
-    // if (audioContent[index].captions[seekBackCaption]) {
-    //     console.log(".")
-    //     captionsWhenSeek[0] = audioContent[index].captions[seekBackCaption][0];
-    // }
-
-    // if (audioContent[index].captions[seekForCaption]) {
-    //     console.log("..")
-    //     captionsWhenSeek[1] = audioContent[index].captions[seekForCaption][0];
-    // }
-
-    // console.log(captionsWhenSeek)
 
     if (audioContent[index].captions[currentTimeIs]) {
         captionsDisplayer.innerText = audioContent[index].captions[currentTimeIs][0];

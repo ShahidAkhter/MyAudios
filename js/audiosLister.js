@@ -59,7 +59,8 @@ let audioContentList = {};
 
 const createAudioContentList = async () => {
     try {
-        const response = await fetchAudioData('/media/sounds', 4);
+        const response = await fetchAudioData('media', 3);
+        // console.log(response)
         if (response.length === 0) {
             const storedAudioContentList = localStorage.getItem('audioContentList');
             if (storedAudioContentList) {
@@ -76,16 +77,18 @@ const createAudioContentList = async () => {
 
         for (const e of response) {
             const channelName = e.split('/').pop().replace(/%20/g, ' ');
-            const fetchFromFolder = await fetchAudioData(e, 5);
-
+            // console.log(channelName)
+            const fetchFromFolder = await fetchAudioData('media/' + channelName + '/audios', 5);
+            // console.log(fetchFromFolder)
             const audioContentForChannel = await Promise.all(fetchFromFolder.map(async (efol) => {
                 // Extract data from the URL
+                // console.log(efol)
                 const [fullTitle, fullCreatorsName] = efol.split('.BY.');
                 const title = fullTitle.split('/').pop().replace(/%20/g, ' ');
                 const creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
                 const coverFileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
-                let coverPath = 'media/covers/' + channelName + '/' + coverFileName + '.jpg';
-                const captionResp = await fetch('media/captions/' + channelName + '/' + coverFileName + '.json');
+                let coverPath = 'media/' + channelName + '/covers/' + '/' + coverFileName + '.jpg';
+                const captionResp = await fetch('media/' + channelName + '/captions/' + coverFileName + '.json');
 
                 // Fetch cover to check its ok
                 const coverOk = await fetch(coverPath);
@@ -106,7 +109,7 @@ const createAudioContentList = async () => {
                 }
 
                 const pathFileName = efol.split('/').pop().replace(/%20/g, ' ');
-                const path = 'media/sounds/' + channelName + '/' + pathFileName;
+                const path = 'media/' + channelName + '/audios/' + pathFileName;
 
                 return {
                     title,
@@ -166,7 +169,7 @@ const renderChannels = async () => {
             <div class="channelItemIs channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="channelItemNo${i}">
                 <div class="flex f-center">
                     <div class="imgListChannelBar flex f-center">
-                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"] != "" ? audioContentList['channels'][element][0]["cover"]:defaultCover}">
+                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"] != "" ? audioContentList['channels'][element][0]["cover"] : defaultCover}">
                     </div>
                     <div class="margin-x-0  w-1 channelNameDiv">
                         <span id="channelList${i}" class="channelName">
