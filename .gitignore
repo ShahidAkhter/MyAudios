@@ -1,6 +1,4 @@
 *.mp3
 *.jpg
-media/captions/*
-media/covers/*
-media/sounds/*
+media
 dummy.json
