@@ -78,8 +78,8 @@ const setData = async (i) => {
     currentTimeDur.innerText = "00:00";
     timeDuration.innerText = audioContent[i].audLength;
     audTitle.innerText = audioContent[i].title;
-    audBanner.src = audioContent[i].cover!=""?audioContent[i].cover:defaultCover;
-    audCreator.innerText = audioContent[i].creator;
+    audBanner.src = audioContent[i].cover==="channelLogo"?`media/${audioContent[i].creator}/info/logo.jpg`:audioContent[i].cover!=""?audioContent[i].cover:defaultCover;
+    audCreator.innerText = audioContent[i].creator!=audioContent[i].channel?audioContent[i].creator:'';
     audChannel.innerText = audioContent[i].channel;
 
     // favIcon.href = audBanner.src;

@@ -4,10 +4,11 @@ const renderAudioContent = async () => {
 
     for (let i = 0; i < audioContent.length; i++) {
         const element = audioContent[i];
+        // console.log(element.cover)
         playList.innerHTML += `
             <div class="songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}">
                 <div class="imgList flex f-center">
-                    <img alt="${i}" id="${i}" class="border-radius" src="${element.cover != "" ? element.cover : defaultCover}">
+                    <img alt="${i}" id="${i}" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
                 </div>
                 <div class="margin-x infoTabs w-1" id="infoTab${i}">
                     <div class="text-size-1" id="title${i}">${element.title}</div>
@@ -79,22 +80,51 @@ const createAudioContentList = async () => {
             const channelName = e.split('/').pop().replace(/%20/g, ' ');
             // console.log(channelName)
             const fetchFromFolder = await fetchAudioData('media/' + channelName + '/audios', 5);
+            // const channelLogo='media/' + channelName + '/info/logo.jpg'
             // console.log(fetchFromFolder)
             const audioContentForChannel = await Promise.all(fetchFromFolder.map(async (efol) => {
                 // Extract data from the URL
                 // console.log(efol)
-                const [fullTitle, fullCreatorsName] = efol.split('.BY.');
-                const title = fullTitle.split('/').pop().replace(/%20/g, ' ');
-                const creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
-                const coverFileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
-                let coverPath = 'media/' + channelName + '/covers/' + coverFileName + '.jpg';
-                const captionResp = await fetch('media/' + channelName + '/captions/' + coverFileName + '.json');
+                let fullTitle, fullCreatorsName, title, creator, fileName, coverPath;
+                if (efol.includes('.BY.')) {
+                    [fullTitle, fullCreatorsName] = efol.split('.BY.');
+                    title = fullTitle.split('/').pop().replace(/%20/g, ' ');
+                    creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                } else {
+                    title = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                    creator = channelName;
+                }
+
+                fileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                coverPath = 'media/' + channelName + '/covers/' + fileName + '.jpg';
+                const captionResp = await fetch('media/' + channelName + '/captions/' + fileName + '.json');
 
                 // Fetch cover to check its ok
-                const coverOk = await fetch(coverPath);
-                if (!coverOk.ok) {
+                let coverOk;
+                let channelLogoOk;
+                try {
+                    coverOk = await fetch(coverPath);
+                } catch (error) {
                     coverPath = "";
                 }
+
+                if (!coverOk || !coverOk.ok) {
+                    try {
+                        channelLogoOk = await fetch('media/' + channelName + '/info/logo.jpg');
+                    } catch (error) {
+                        coverPath = "";
+                    }
+
+                    if (channelLogoOk && channelLogoOk.ok) {
+                        coverPath = 'channelLogo';
+                    } else {
+                        // Optional handling if channelLogoOk fails
+                        coverPath = "";
+                    }
+                }
+
+
+
                 // Fetch captions
                 let captions = {};
                 if (captionResp.ok) {
@@ -169,7 +199,7 @@ const renderChannels = async () => {
             <div class="channelItemIs channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="channelItemNo${i}">
                 <div class="flex f-center">
                     <div class="imgListChannelBar flex f-center">
-                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"] != "" ? audioContentList['channels'][element][0]["cover"] : defaultCover}">
+                        <img alt="${i}" class="border-radius" src="${audioContentList['channels'][element][0]["cover"] === 'channelLogo' ? `media/${audioContentList['channels'][element][0]["creator"]}/info/logo.jpg` : audioContentList['channels'][element][0]["cover"] != "" ? audioContentList['channels'][element][0]["cover"] : defaultCover}">
                     </div>
                     <div class="margin-x-0  w-1 channelNameDiv">
                         <span id="channelList${i}" class="channelName">
