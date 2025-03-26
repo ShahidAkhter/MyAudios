@@ -6,7 +6,7 @@ const renderAudioContent = async () => {
         const element = audioContent[i];
         // console.log(element.cover)
         if (!audioContent[i - 1] || audioContent[i - 1].channel !== element.channel) {
-            playList.innerHTML +=`<div class="channelWithAudioList channelsListDesign margin-2 channelsListDesignMini flex f-center f-left padding-1 bg-1 border-1 border-radius cursor-pointer" aria-labelledby="${element.channel.replace(/\s/g, "|")}">
+            playList.innerHTML +=`<div class="channelWithAudioList channelsListDesign margin-2 channelsListDesignMini flex f-center f-between padding-1 bg-1 border-1 border-radius cursor-pointer" aria-labelledby="${element.channel.replace(/\s/g, "|")}">
             <div class="flex f-center">
                 <div class="imgList flex f-center">
                     <img alt="" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
@@ -16,6 +16,11 @@ const renderAudioContent = async () => {
                         <span class="myChannelName">${element.channel}</span> 
                     </span>
                 </div>
+            </div>
+            <div class="flex f-center">
+                <span class="toggleChannelTab">
+                    <img src="assets\\appImgs\\angle-up.svg" class="control-imgs-0" alt="Close">
+                </span>
             </div>
         </div>`
         }

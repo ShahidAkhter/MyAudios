@@ -61,6 +61,9 @@ const playEvent = async () => {
             const relatedElements = Array.from(document.querySelectorAll(`[aria-labelledby="${element.getAttribute("aria-labelledby")}Item"]`));
             relatedElements.forEach((e) => {
                 e.style.display = e.style.display === "none" ? "flex" : "none";
+                const img=element.querySelector(".toggleChannelTab img");
+                img.src=img.getAttribute("alt")==="Close"?"assets\\appImgs\\angle-down.svg":"assets\\appImgs\\angle-up.svg";
+                img.setAttribute("alt", img.getAttribute("alt")==='Open'?'Close':'Open');
             });
         };
     });
@@ -94,7 +97,7 @@ const setData = async (i) => {
         captionsDisplayer.style.fontFamily = audioContent[i].captions['fontFamily'][0]
         captionsDisplayer.innerHTML = "Captions will show here!";
     } else {
-        captionsDisplayer.style.fontFamily = 'var(--DefaultFont)'
+        captionsDisplayer.style.fontFamily = 'var(--DefaultFont)';
         captionsDisplayer.innerHTML = "No Captions";
     };
 
