@@ -56,6 +56,14 @@ const playEvent = async () => {
             audioChanged = audioContent[index].path;
         };
     });
+    Array.from(document.getElementsByClassName("channelWithAudioList")).forEach((element) => {
+        element.onclick = () => {
+            const relatedElements = Array.from(document.querySelectorAll(`[aria-labelledby="${element.getAttribute("aria-labelledby")}Item"]`));
+            relatedElements.forEach((e) => {
+                e.style.display = e.style.display === "none" ? "flex" : "none";
+            });
+        };
+    });
 }
 
 const resetplay = async () => {
@@ -72,26 +80,28 @@ const alwaysRun = async (i) => {
 
 const setData = async (i) => {
     // console.log(i)
-    captionsDisplayer.innerHTML="Caption Tab!"
     audioChanged = audioContent[index].path;
 
     currentTimeDur.innerText = "00:00";
     timeDuration.innerText = audioContent[i].audLength;
-    audTitle.innerText = audioContent[i].title;
-    audBanner.src = audioContent[i].cover==="channelLogo"?`media/${audioContent[i].creator}/info/logo.jpg`:audioContent[i].cover!=""?audioContent[i].cover:defaultCover;
-    audCreator.innerText = audioContent[i].creator!=audioContent[i].channel?audioContent[i].creator:'';
+    audTitle.innerText = (audioContent[i].title.length < 60) ? audioContent[i].title : audioContent[i].title.split(" ").splice(0, 10).join(" ");
+    audBanner.src = audioContent[i].cover === "channelLogo" ? `media/${audioContent[i].creator}/info/logo.jpg` : audioContent[i].cover != "" ? audioContent[i].cover : defaultCover;
+    audCreator.innerText = audioContent[i].creator != audioContent[i].channel ? audioContent[i].creator : '';
     audChannel.innerText = audioContent[i].channel;
 
     // favIcon.href = audBanner.src;
     if (audioContent[i].captions['fontFamily'][0] && audioContent[i].captions['fontFamily'][0] != "") {
         captionsDisplayer.style.fontFamily = audioContent[i].captions['fontFamily'][0]
-    }else{
-        captionsDisplayer.style.fontFamily = 'auto'
+        captionsDisplayer.innerHTML = "Captions will show here!";
+    } else {
+        captionsDisplayer.style.fontFamily = 'var(--DefaultFont)'
+        captionsDisplayer.innerHTML = "No Captions";
     };
 
     // captionPoints
     captionPoints = Object.keys(audioContent[i].captions)
-    captionPoints.map((e, i) => { captionPoints[i] = parseInt(e) })
+    captionPoints.map((e, i) => { captionPoints[i] = parseInt(e) });
+
 
     // mediaUpdater
     mediaUpdater(audTitle.innerText, audCreator.innerText, audChannel.innerText, audBanner.src)

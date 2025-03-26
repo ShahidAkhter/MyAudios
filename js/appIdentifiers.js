@@ -52,9 +52,9 @@ let currentChannel = "";
 captionPoints = [];
 captionsWhenSeek = [];
 let defaultCaption = {
-    "fontFamily": ["Arabic"],
+    "fontFamily": ["var(--DefaultFont)"],
     "0": [
-        "---"
+        "No Captions"
     ]
 }
 

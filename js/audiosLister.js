@@ -5,8 +5,22 @@ const renderAudioContent = async () => {
     for (let i = 0; i < audioContent.length; i++) {
         const element = audioContent[i];
         // console.log(element.cover)
+        if (!audioContent[i - 1] || audioContent[i - 1].channel !== element.channel) {
+            playList.innerHTML +=`<div class="channelWithAudioList channelsListDesign margin-2 channelsListDesignMini flex f-center f-left padding-1 bg-1 border-1 border-radius cursor-pointer" aria-labelledby="${element.channel.replace(/\s/g, "|")}">
+            <div class="flex f-center">
+                <div class="imgList flex f-center">
+                    <img alt="" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
+                </div>
+                <div class="margin-x-0">
+                    <span>
+                        <span class="myChannelName">${element.channel}</span> 
+                    </span>
+                </div>
+            </div>
+        </div>`
+        }
         playList.innerHTML += `
-            <div class="songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}">
+            <div class="${element.channel.replace(/\s/g, "|")} songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}" aria-labelledby="${element.channel.replace(/\s/g, "|")}Item">
                 <div class="imgList flex f-center">
                     <img alt="${i}" id="${i}" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
                 </div>
@@ -44,12 +58,17 @@ const fetchAudioData = async (url, splicingNum) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
         const anchors = Array.from(doc.querySelectorAll('a'));
-        const hrefs = anchors.map(a => a.href);
 
-        if (hrefs.length > splicingNum) {
-            hrefs.splice(0, splicingNum);
+        // Splicing anchors that not required
+        if (anchors.length > splicingNum) {
+            anchors.splice(0, splicingNum);
         }
-        return hrefs;
+
+        // Extracting and Decoding hrefs and saved to decodedHrefs
+        const decodedHrefs = anchors.map(a => decodeURIComponent(a.href));
+
+        // Returning decodedHrefs
+        return decodedHrefs;
     } catch (error) {
         console.error(`Error fetching audio data: ${error.message}`);
         return [];
@@ -77,7 +96,7 @@ const createAudioContentList = async () => {
         let audioContent = {};
 
         for (const e of response) {
-            const channelName = e.split('/').pop().replace(/%20/g, ' ');
+            const channelName = e.split('/').pop();
             // console.log(channelName)
             const fetchFromFolder = await fetchAudioData('media/' + channelName + '/audios', 5);
             // const channelLogo='media/' + channelName + '/info/logo.jpg'
@@ -88,14 +107,14 @@ const createAudioContentList = async () => {
                 let fullTitle, fullCreatorsName, title, creator, fileName, coverPath;
                 if (efol.includes('.BY.')) {
                     [fullTitle, fullCreatorsName] = efol.split('.BY.');
-                    title = fullTitle.split('/').pop().replace(/%20/g, ' ');
-                    creator = fullCreatorsName.split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                    title = fullTitle.split('/').pop();
+                    creator = fullCreatorsName.split('.').slice(0, -1).join('.');
                 } else {
-                    title = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                    title = efol.split('/').pop().split('.').slice(0, -1).join('.');
                     creator = channelName;
                 }
 
-                fileName = efol.split('/').pop().split('.').slice(0, -1).join('.').replace(/%20/g, ' ');
+                fileName = efol.split('/').pop().split('.').slice(0, -1).join('.');
                 coverPath = 'media/' + channelName + '/covers/' + fileName + '.jpg';
                 const captionResp = await fetch('media/' + channelName + '/captions/' + fileName + '.json');
 
@@ -138,7 +157,7 @@ const createAudioContentList = async () => {
 
                 }
 
-                const pathFileName = efol.split('/').pop().replace(/%20/g, ' ');
+                const pathFileName = efol.split('/').pop();
                 const path = 'media/' + channelName + '/audios/' + pathFileName;
 
                 return {
@@ -175,7 +194,7 @@ const renderChannels = async () => {
         allNoOfAudiosIs += audioContentList['channels'][element].length;
     });
     channelListDiv.innerHTML += `
-        <div class="channelsListDesign flex f-center f-left margin-2 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="allChannelsContent">
+        <div class="channelsListDesign flex f-center f-left margin-2 margin-t-1 padding-1 bg min-w-2 border-1 border-radius cursor-pointer" id="allChannelsContent">
             <div class="flex f-center">
                 <div class="imgList flex f-center">
                     <img alt="-1" class="border-radius" src="./assets/favicon.ico">
@@ -232,11 +251,7 @@ const renderChannels = async () => {
             audioContent = await audioContentList['channels'][channelDisplaying];
             index = 0;
             lastIndex = audioContent.length - 1;
-            if (currentChannel == channelDisplaying) {
-                channelListDiv.style.display = 'none';
-                playList.style.display = 'flex';
-                return;
-            }
+
             audio.src = audioContent[index].path;
             currentChannel = channelDisplaying
             renderAudioContent();
@@ -259,14 +274,10 @@ const renderChannels = async () => {
         });
         index = 0;
         lastIndex = audioContent.length - 1;
-        if (currentChannel == 'AllChannels') {
-            channelListDiv.style.display = 'none';
-            playList.style.display = 'flex';
-            return;
-        }
+
         audio.src = audioContent[index].path;
-        renderAudioContent();
         currentChannel = 'AllChannels'
+        renderAudioContent();
     };
 };
 
