@@ -59,7 +59,6 @@ img {
 }
 
 #audSpeed {
-    width: 40px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -126,15 +125,13 @@ img {
 }
 
 .main {
-    width: auto;
     padding-bottom: 80vh !important;
 }
 
-.songItem,
+.audItem,
 .channelsListDesign {
     border: 1px solid black;
     border-radius: 4px;
-    min-width: 60vw;
 }
 
 .infoTabs {
@@ -161,10 +158,6 @@ img {
 .channels,
 .channel {
     width: 10vw;
-}
-
-.podcastList {
-    width: 8vw;
 }
 
 .seekTime {
@@ -270,13 +263,5 @@ img {
 @media screen and (max-width:270px) {
     .infoTabs {
         display: none;
-    }
-
-    .podcastList {
-        width: 20vw;
-    }
-
-    .podcastList {
-        padding-left: 20vw;
     }
 }

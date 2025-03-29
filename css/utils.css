@@ -8,6 +8,11 @@
     bottom: -10px;
 }
 
+.pos-relative-channel {
+    position: relative !important;
+    left: -9px;
+}
+
 .posChange {
     position: absolute;
     bottom: 101px;
@@ -123,6 +128,14 @@
 
 .w-2 {
     width: auto;
+}
+
+.w-3 {
+    width: 60vw !important;
+}
+
+.w-4 {
+    width: 100% !important;
 }
 
 .min-w-1 {

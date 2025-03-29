@@ -6,10 +6,10 @@ const renderAudioContent = async () => {
         const element = audioContent[i];
         // console.log(element.cover)
         if (!audioContent[i - 1] || audioContent[i - 1].channel !== element.channel) {
-            playList.innerHTML +=`<div class="channelWithAudioList channelsListDesign margin-2 channelsListDesignMini flex f-center f-between padding-1 bg-1 border-1 border-radius cursor-pointer" aria-labelledby="${element.channel.replace(/\s/g, "|")}">
+            playList.innerHTML +=`<div class="pos-relative-channel channelWithAudioList channelsListDesign channelsListDesignMini flex f-center f-between padding-1 bg-1 border-1 border-radius cursor-pointer" aria-labelledby="${element.channel.replace(/\s/g, "|")}">
             <div class="flex f-center">
                 <div class="imgList flex f-center">
-                    <img alt="" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
+                    <img alt="logo" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
                 </div>
                 <div class="margin-x-0">
                     <span>
@@ -25,7 +25,7 @@ const renderAudioContent = async () => {
         </div>`
         }
         playList.innerHTML += `
-            <div class="${element.channel.replace(/\s/g, "|")} songItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab" id="play${i}" aria-labelledby="${element.channel.replace(/\s/g, "|")}Item">
+            <div class="${element.channel.replace(/\s/g, "|")} audItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab w-4" id="play${i}" aria-labelledby="${element.channel.replace(/\s/g, "|")}Item">
                 <div class="imgList flex f-center">
                     <img alt="${i}" id="${i}" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
                 </div>
