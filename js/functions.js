@@ -35,7 +35,8 @@ const playEvent = async () => {
     Array.from(document.getElementsByClassName("playTab")).forEach((element) => {
         element.onclick = async () => {
             // adding click to play and pause funtionality to playTab
-            index = Number.parseInt(element.id.split("y")[1]);
+            index = Number.parseInt(element.ariaValueText);
+
             if (audioChanged != audioContent[index].path && audioContent[index].path) {
                 audio.src = audioContent[index].path;
             }

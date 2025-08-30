@@ -25,7 +25,7 @@ const renderAudioContent = async () => {
         </div>`
         }
         playList.innerHTML += `
-            <div class="${element.channel.replace(/\s/g, "|")} audItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab w-4" id="play${i}" aria-labelledby="${element.channel.replace(/\s/g, "|")}Item">
+            <div class="${element.channel.replace(/\s/g, "|")} audItem flex f-center f-left margin-2 padding-1 bg cursor-pointer playTab w-4" id="play${i}" aria-valuetext="${i}" aria-labelledby="${element.channel.replace(/\s/g, "|")}Item">
                 <div class="imgList flex f-center">
                     <img alt="${i}" id="${i}" class="border-radius" src="${element.cover === 'channelLogo' ? `media/${element.channel}/info/logo.jpg` : element.cover !== "" ? element.cover : defaultCover}">
                 </div>
