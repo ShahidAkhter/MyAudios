@@ -62,9 +62,9 @@ const playEvent = async () => {
             const relatedElements = Array.from(document.querySelectorAll(`[aria-labelledby="${element.getAttribute("aria-labelledby")}Item"]`));
             relatedElements.forEach((e) => {
                 e.style.display = e.style.display === "none" ? "flex" : "none";
-                const img=element.querySelector(".toggleChannelTab img");
-                img.src=img.getAttribute("alt")==="Close"?"assets\\appImgs\\angle-down.svg":"assets\\appImgs\\angle-up.svg";
-                img.setAttribute("alt", img.getAttribute("alt")==='Open'?'Close':'Open');
+                const img = element.querySelector(".toggleChannelTab img");
+                img.src = img.getAttribute("alt") === "Close" ? "assets\\appImgs\\angle-down.svg" : "assets\\appImgs\\angle-up.svg";
+                img.setAttribute("alt", img.getAttribute("alt") === 'Open' ? 'Close' : 'Open');
             });
         };
     });
@@ -88,7 +88,7 @@ const setData = async (i) => {
 
     currentTimeDur.innerText = "00:00";
     timeDuration.innerText = audioContent[i].audLength;
-    audTitle.innerText = (audioContent[i].title.length < 60) ? audioContent[i].title : audioContent[i].title.split(" ").splice(0, 10).join(" ");
+    audTitle.innerText = (audioContent[i].title.length < 60) ? audioContent[i].title : audioContent[i].title.split(" ").splice(0, 6).join(" ");
     audBanner.src = audioContent[i].cover === "channelLogo" ? `media/${audioContent[i].creator}/info/logo.jpg` : audioContent[i].cover != "" ? audioContent[i].cover : defaultCover;
     audCreator.innerText = audioContent[i].creator != audioContent[i].channel ? audioContent[i].creator : '';
     audChannel.innerText = audioContent[i].channel;
@@ -108,7 +108,7 @@ const setData = async (i) => {
 
 
     // mediaUpdater
-    mediaUpdater(audTitle.innerText, audCreator.innerText, audChannel.innerText, audBanner.src)
+    mediaUpdater(audioContent[i].title, audCreator.innerText, audChannel.innerText, audBanner.src)
 
 }
 
